@@ -4,6 +4,9 @@ url
 description
 createdAt
 tags
+image {
+  url
+}
 `
 const SOCIALS_GRAPHQL_FIELDS = `
 type
@@ -70,7 +73,7 @@ export async function getFeaturedProject() {
       }
     }`,
   )
-  return response?.data?.socialsCollection?.items[0]
+  return response?.data?.projectsCollection?.items[0]
 }
 
 export async function getTextContentByTag(tag: string) {

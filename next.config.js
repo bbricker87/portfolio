@@ -10,6 +10,9 @@ const nextConfig = {
     return config;
   },
   reactStrictMode: true,
+  images: {
+    domains: ['images.ctfassets.net']
+  }
 }
 
 module.exports = nextConfig

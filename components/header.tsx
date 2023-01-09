@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import SocialLinks from './social'
+import SocialLinks from './SocialLinks'
 
 const HeaderImage = () => {
   return (
