@@ -40,14 +40,14 @@ async function fetchGraphQL(query: string, preview = false) {
 export async function getProjects() {
   const response = await fetchGraphQL(
     `query {
-      projectsCollection {
+      projectsCollection(order: [featured_DESC, createdAt_DESC]) {
         items {
           ${PROJECTS_GRAPHQL_FIELDS}
         }
       }
     }`,
   )
-  return response?.data?.socialsCollection?.items
+  return response?.data?.projectsCollection?.items
 }
 
 export async function getSocials() {
@@ -86,5 +86,5 @@ export async function getTextContentByTag(tag: string) {
       }
     }`,
   )
-  return response?.data?.contentCollection?.items[0].text
+  return response?.data?.contentCollection?.items[0]?.text
 }

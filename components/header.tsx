@@ -1,10 +1,13 @@
 import Image from 'next/image'
 import SocialLinks from './SocialLinks'
+import Link from 'next/link'
 
 const HeaderImage = () => {
   return (
     <div className="mx-auto mb-8 w-full sm:w-60 md:w-80 aspect-square rounded-full overflow-hidden relative">
-      <Image src="/ben-square.jpeg" alt="ben-bricker" fill={true}></Image>
+      <Link href="/">
+        <Image src="/ben-square.jpeg" alt="ben-bricker" fill={true}></Image>
+      </Link>
     </div>
   )
 }
@@ -18,8 +21,12 @@ const HeaderTitle = ({
 }) => {
   return (
     <div className="mx-auto text-center my-4">
-      <h1 className="text-jet font-bold text-4xl md:text-5xl lg:text-7xl">
-        {title}
+      <h1 className="font-bold text-4xl md:text-5xl lg:text-7xl">
+        <Link
+          className="text-jet hover:text-cool-grey transition-all duration-500"
+          href="/">
+          {title}
+        </Link>
       </h1>
       <h4 className="text-xanadu text-xl md:text-2xl lg:text-3xl">
         {subtitle}
