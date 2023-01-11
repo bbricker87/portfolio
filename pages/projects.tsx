@@ -1,28 +1,39 @@
-import Head from 'next/head'
 import NavBar from '../components/NavBar'
 import Header from '../components/Header'
-import { getProjects, getSocials } from '../api'
+import {
+  getAssetByTitle,
+  getProjects,
+  getSocials,
+  getTextContentByTag,
+} from '../api'
 import Footer from '../components/Footer'
 import Project from '../components/Project'
+import SharedHead from '../components/SharedHead'
 
-export default function Home({
+export default function Projects({
+  headerImage,
+  name,
+  jobTitle,
   projects,
   socials,
 }: {
+  headerImage: any
+  name: string
+  jobTitle: string
   projects: any
   socials: any
   about: string
 }) {
   return (
     <>
-      <Head>
-        <title>Ben Bricker | Home</title>
-        <meta name="description" content="Ben Bricker portfolio website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <SharedHead />
       <div className="min-h-screen bg-cultured">
-        <Header socials={socials} />
+        <Header
+          image={headerImage}
+          name={name}
+          jobTitle={jobTitle}
+          socials={socials}
+        />
         <NavBar />
         <div className="my-8 sm:my-16 md:my-24 container mx-auto">
           <div className="2xl:max-w-7xl mx-auto text-xl">
@@ -31,7 +42,7 @@ export default function Home({
             </h4>
             {!!projects &&
               projects.map((project: any, i: number) => (
-                <Project project={project} key={project.name} />
+                <Project project={project} key={i} />
               ))}
           </div>
         </div>
@@ -42,9 +53,12 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
-  const projects = (await getProjects()) || []
+  const headerImage = (await getAssetByTitle('Ben Square')) || null
+  const name = (await getTextContentByTag('site-name')) || ''
+  const jobTitle = (await getTextContentByTag('site-job-title')) || ''
   const socials = (await getSocials()) || []
+  const projects = (await getProjects()) || []
   return {
-    props: { projects, socials },
+    props: { headerImage, name, jobTitle, projects, socials },
   }
 }

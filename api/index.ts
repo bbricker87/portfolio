@@ -16,6 +16,14 @@ const CONTENT_GRAPHQL_FIELDS = `
 tag
 text
 `
+const ASSET_GRAPHQL_FIELDS = `
+title
+fileName
+url
+size
+width
+height
+`
 
 async function fetchGraphQL(query: string, preview = false) {
   return fetch(
@@ -87,4 +95,17 @@ export async function getTextContentByTag(tag: string) {
     }`,
   )
   return response?.data?.contentCollection?.items[0]?.text
+}
+
+export async function getAssetByTitle(title: string) {
+  const response = await fetchGraphQL(
+    `query {
+      assetCollection(where: { title: "${title}" }) { 
+        items {
+          ${ASSET_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+  )
+  return response?.data?.assetCollection?.items[0]
 }

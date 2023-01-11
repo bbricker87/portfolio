@@ -1,26 +1,32 @@
-import Head from 'next/head'
 import NavBar from '../components/NavBar'
 import Header from '../components/Header'
-import { getSocials, getTextContentByTag } from '../api'
+import { getAssetByTitle, getSocials, getTextContentByTag } from '../api'
 import Footer from '../components/Footer'
+import SharedHead from '../components/SharedHead'
 
 export default function Home({
+  headerImage,
+  name,
+  jobTitle,
   socials,
   about,
 }: {
+  headerImage: any
+  name: string
+  jobTitle: string
   socials: any
   about: string
 }) {
   return (
     <>
-      <Head>
-        <title>Ben Bricker | Home</title>
-        <meta name="description" content="Ben Bricker portfolio website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <SharedHead />
       <div className="min-h-screen bg-cultured">
-        <Header socials={socials} />
+        <Header
+          image={headerImage}
+          name={name}
+          jobTitle={jobTitle}
+          socials={socials}
+        />
         <NavBar />
         <div className="my-8 sm:my-16 md:my-24 container mx-auto mb-20 sm:mb-0">
           <div className="2xl:max-w-7xl mx-auto text-xl px-4">
@@ -39,9 +45,12 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
+  const headerImage = (await getAssetByTitle('Ben Square')) || null
+  const name = (await getTextContentByTag('site-name')) || ''
+  const jobTitle = (await getTextContentByTag('site-job-title')) || ''
   const socials = (await getSocials()) || []
   const about = (await getTextContentByTag('site-about')) || ''
   return {
-    props: { socials, about },
+    props: { headerImage, name, jobTitle, socials, about },
   }
 }

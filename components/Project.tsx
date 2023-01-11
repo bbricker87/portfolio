@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Fragment } from 'react'
 
 const Project = ({ project }: { project: any }) => {
   const projectTags = project?.tags.split(',') ?? []
@@ -21,14 +22,16 @@ const Project = ({ project }: { project: any }) => {
         </h5>
         <ul className="list-none mb-4 flex text-xs md:text-sm text-cool-grey">
           <li className="mr-2">{projectYear}</li> |
-          {projectTags.map((tag: any, i: number) => {
+          {projectTags?.map((tag: any, i: number) => {
+            const listKey = `${tag.toLowerCase()}_${project.name
+              .split(' ')
+              .join('_')
+              .toLowerCase()}`
             return (
-              <>
-                <li className="mx-2" key={`${tag}_${project.name}`}>
-                  {tag}
-                </li>{' '}
+              <Fragment key={listKey}>
+                <li className="mx-2">{tag}</li>{' '}
                 {i < projectTags.length - 1 && <span>•</span>}
-              </>
+              </Fragment>
             )
           })}
         </ul>

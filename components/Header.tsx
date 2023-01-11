@@ -2,11 +2,14 @@ import Image from 'next/image'
 import SocialLinks from './SocialLinks'
 import Link from 'next/link'
 
-const HeaderImage = () => {
+const HeaderImage = ({ image }: { image: any }) => {
   return (
     <div className="mx-auto mb-8 w-60 md:w-80 aspect-square rounded-full overflow-hidden relative">
       <Link href="/">
-        <Image src="/ben-square.jpeg" alt="ben-bricker" fill={true}></Image>
+        <Image
+          src={image?.url ?? `/ben-square.jpeg`}
+          alt="ben-bricker"
+          fill={true}></Image>
       </Link>
     </div>
   )
@@ -25,21 +28,31 @@ const HeaderTitle = ({
         <Link
           className="text-jet hover:text-cool-grey transition-all duration-500"
           href="/">
-          {title}
+          {title ?? `Ben Bricker`}
         </Link>
       </h1>
       <h4 className="text-xanadu text-xl md:text-2xl lg:text-3xl">
-        {subtitle}
+        {subtitle ?? `Software Engineer`}
       </h4>
     </div>
   )
 }
 
-export default function Header({ socials }: { socials: any }) {
+export default function Header({
+  image,
+  name,
+  jobTitle,
+  socials,
+}: {
+  image: any
+  name: string
+  jobTitle: string
+  socials: any
+}) {
   return (
     <div className="container px-4 sm:mx-auto py-4 sm:py-10 md:py-20">
-      <HeaderImage />
-      <HeaderTitle title="Ben Bricker" subtitle="Software Engineer" />
+      <HeaderImage image={image} />
+      <HeaderTitle title={name} subtitle={jobTitle} />
       <SocialLinks socials={socials} />
     </div>
   )
