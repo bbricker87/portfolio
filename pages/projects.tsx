@@ -1,14 +1,13 @@
 import Head from 'next/head'
 import NavBar from '../components/NavBar'
 import Header from '../components/Header'
-import { getProjects, getSocials, getTextContentByTag } from '../api'
+import { getProjects, getSocials } from '../api'
 import Footer from '../components/Footer'
 import Project from '../components/Project'
 
 export default function Home({
   projects,
   socials,
-  about,
 }: {
   projects: any
   socials: any
@@ -45,8 +44,7 @@ export default function Home({
 export async function getServerSideProps() {
   const projects = (await getProjects()) || []
   const socials = (await getSocials()) || []
-  const about = (await getTextContentByTag('site-about')) || ''
   return {
-    props: { projects, socials, about },
+    props: { projects, socials },
   }
 }
