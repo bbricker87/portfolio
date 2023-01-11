@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const HeaderImage = () => {
   return (
-    <div className="mx-auto mb-8 w-full sm:w-60 md:w-80 aspect-square rounded-full overflow-hidden relative">
+    <div className="mx-auto mb-8 w-60 md:w-80 aspect-square rounded-full overflow-hidden relative">
       <Link href="/">
         <Image src="/ben-square.jpeg" alt="ben-bricker" fill={true}></Image>
       </Link>
@@ -37,7 +37,7 @@ const HeaderTitle = ({
 
 export default function Header({ socials }: { socials: any }) {
   return (
-    <div className="container mx-auto min-h-screen sm:min-h-0 py-20">
+    <div className="container px-4 sm:mx-auto py-4 sm:py-10 md:py-20">
       <HeaderImage />
       <HeaderTitle title="Ben Bricker" subtitle="Software Engineer" />
       <SocialLinks socials={socials} />

@@ -25,12 +25,14 @@ export default function Home({
       <div className="min-h-screen bg-cultured">
         <Header socials={socials} />
         <NavBar />
-        <div className="my-24 container mx-auto">
-          <div className="max-w-7xl mx-auto text-xl leading-relaxed">
-            <p className="px-8 text-justify">{intro}</p>
+        <div className="my-8 sm:my-16 md:my-24 container mx-auto">
+          <div className="2xl:max-w-7xl mx-auto text-xl px-4">
+            <p className="text-sm sm:text-md md:text-lg leading-relaxed text-justify whitespace-pre-line">
+              {intro}
+            </p>
           </div>
-          <div className="max-w-7xl mx-auto my-20">
-            <h4 className="text-xanadu text-xl md:text-2xl lg:text-3xl mb-4">
+          <div className="max-w-7xl mx-auto my-8 sm:my-15 lg:my-20 px-1">
+            <h4 className="text-2xl md:text-3xl px-2 lg:px-0 lg:text-4xl mb-1 md:mb-4">
               Featured
             </h4>
             <Project project={featured} />

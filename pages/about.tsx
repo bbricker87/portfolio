@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import NavBar from '../components/NavBar'
 import Header from '../components/Header'
-import { getFeaturedProject, getSocials, getTextContentByTag } from '../api'
-import Project from '../components/Project'
+import { getSocials, getTextContentByTag } from '../api'
 import Footer from '../components/Footer'
 
 export default function Home({
@@ -23,12 +22,14 @@ export default function Home({
       <div className="min-h-screen bg-cultured">
         <Header socials={socials} />
         <NavBar />
-        <div className="my-24 container mx-auto">
-          <div className="max-w-7xl mx-auto text-xl leading-relaxed">
-            <h4 className="text-xanadu text-xl md:text-2xl lg:text-3xl mb-4">
+        <div className="my-8 sm:my-16 md:my-24 container mx-auto mb-20 sm:mb-0">
+          <div className="2xl:max-w-7xl mx-auto text-xl px-4">
+            <h4 className="text-xl md:text-3xl lg:px-0 lg:text-4xl mb-4 hidden sm:block">
               About Me
             </h4>
-            <p className="px-8 text-justify whitespace-pre-line">{about}</p>
+            <p className="text-sm sm:text-md md:text-lg leading-relaxed text-justify whitespace-pre-line">
+              {about}
+            </p>
           </div>
         </div>
         <Footer />

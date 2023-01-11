@@ -25,18 +25,14 @@ export default function Home({
       <div className="min-h-screen bg-cultured">
         <Header socials={socials} />
         <NavBar />
-        <div className="my-24 container mx-auto">
-          <div className="max-w-7xl mx-auto text-xl">
-            <h4 className="text-xanadu text-xl md:text-2xl lg:text-3xl mb-4">
+        <div className="my-8 sm:my-16 md:my-24 container mx-auto">
+          <div className="2xl:max-w-7xl mx-auto text-xl">
+            <h4 className="text-xl px-4 md:text-3xl lg:px-0 lg:text-4xl mb-4 hidden sm:block">
               Projects
             </h4>
             {!!projects &&
               projects.map((project: any, i: number) => (
-                <Project
-                  project={project}
-                  key={project.name}
-                  flipped={i % 2 === 1}
-                />
+                <Project project={project} key={project.name} />
               ))}
           </div>
         </div>
