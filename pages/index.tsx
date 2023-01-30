@@ -9,6 +9,7 @@ import {
 import Project from '../components/Project'
 import Footer from '../components/Footer'
 import SharedHead from '../components/SharedHead'
+import Link from 'next/link'
 
 export default function Home({
   headerImage,
@@ -42,11 +43,16 @@ export default function Home({
               {intro}
             </p>
           </div>
-          <div className="max-w-7xl mx-auto my-8 sm:my-15 lg:my-20 px-1">
+          <div className="max-w-7xl mx-auto my-8 sm:my-15 lg:my-20 px-1 justify-center flex flex-wrap">
             <h4 className="text-2xl md:text-3xl px-2 lg:px-0 lg:text-4xl mb-1 md:mb-4">
               Featured
             </h4>
             <Project project={featured} />
+            <Link
+              href="/projects"
+              className="bg-copper-red hover:bg-cool-grey text-cultured px-8 py-2 rounded-md">
+              More Projects
+            </Link>
           </div>
         </div>
         <Footer />
